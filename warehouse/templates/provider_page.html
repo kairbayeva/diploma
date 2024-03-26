@@ -1,0 +1,139 @@
+{% extends 'basic.html' %}
+{% load static %}
+<!-- <link rel="stylesheet" href="{% static 'css/student.css' %}" type="text/css"> -->
+
+{% block title  %} Жеткізуші - {{provider.name}} {% endblock title %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://bootstraptema.ru/plugins/2015/bootstrap3/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<script src="https://bootstraptema.ru/plugins/jquery/jquery-1.11.3.min.js"></script>
+<script src="https://bootstraptema.ru/plugins/2015/b-v3-3-6/bootstrap.min.js"></script>
+
+<br><br><br><br><br>
+
+<style>
+body{
+background: #f1ede4;
+}
+
+#main {
+background: #f1ede4!important;
+ padding: 20px;
+ -webkit-border-radius: 4px;
+ -moz-border-radius: 4px;
+ -ms-border-radius: 4px;
+ -o-border-radius: 4px;
+ border-radius: 4px;
+}
+#real-estates-detail #author img {
+ -webkit-border-radius: 100%;
+ -moz-border-radius: 100%;
+ -ms-border-radius: 100%;
+ -o-border-radius: 100%;
+ border-radius: 100%;
+ border: 5px solid #ecf0f1;
+ margin-bottom: 10px;
+}
+#real-estates-detail .sosmed-author i.fa {
+ width: 30px;
+ height: 30px;
+ border: 2px solid #bdc3c7;
+ color: #bdc3c7;
+ padding-top: 6px;
+ margin-top: 10px;
+}
+.panel-default .panel-heading {
+ background-color: #fcfbf9;
+}
+#real-estates-detail .slides li img {
+ height: 450px;
+}
+.label-warning {
+    background-color: #5b7e78;
+}
+</style>
+
+<div class="container">
+    <div id="main">
+        <div class="row" id="real-estates-detail">
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color: #5b7e78;">
+                        <a href="{% url 'providers_list' %}" class="previous round"><img width="25px" src="{% static 'images/back.png' %}"></a>
+                        <header class="panel-title">
+                            <div class="text-center">
+                                <strong>Жеткізушілер туралы ақпарат</strong>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="panel-body">
+                        <div class="text-center" id="author">
+                            <img width="220px" src="">
+                            <h3>{{provider.name}}</h3>
+                            <small class="label label-warning">Жеткізуші</small>
+                            <h3></h3>
+                            <p class="sosmed-author">
+                            <div class="btn-group">
+<!--                                <a href="#"><button type="button" class="btn btn-sm btn-outline-secondary">Профильді өңдеу</button></a>-->
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-xs-12">
+                <div class="panel">
+                    <div class="panel-body">
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade active in" id="detail">
+                                <br><br>
+                                <table class="table table-th-block">
+                                    <tbody>
+                                    <tr><td class="active">Компания атауы:</td><td>{{provider.name}}</td></tr>
+                                    <tr><td class="active">Мекен-жайы:</td><td>{{provider.address}}</td></tr>
+                                    <tr><td class="active">Менеджер:</td><td>{{provider.manager}}</td></tr>
+                                    </tbody>
+                                </table>
+                                <br><br>
+                                <!-- Добавьте этот код после отображения основной информации о поставщике -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Қоймаға қабылданған товарлардың тізімі</h3>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Қоймаған келген күні</th>
+                                                    <th>Келісімшарт номері</th>
+                                                    <th>Жеткізуші</th>
+                                                    <th>Товар</th>
+                                                    <th>Дана</th>
+                                                    <th>1 дана үшін бағасы</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for coming in comings %}
+                                                <tr>
+                                                    <td>{{ coming.com_id.date|date:"d.m.Y" }}</td>
+                                                    <td>{{ coming.com_id.contract_number }}</td>
+                                                    <td>{{ coming.com_id.prov_id.name }}</td>
+                                                    <td>{{ coming.product_id.name }}</td>
+                                                    <td>{{ coming.quantity }}</td>
+                                                    <td>{{ coming.price }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

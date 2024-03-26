@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    font-family: var(--bs-font-sans-serif);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #f1ede4;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.main-button a {
+    display: inline-block;
+    background-color: #5b7e78;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 25px;
+    border-radius: 20px;
+    transition: all .3s;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #5b7e78;
+    border-color: #5b7e78;
+}

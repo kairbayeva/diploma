@@ -64,13 +64,13 @@ background: #f1ede4!important;
                         <a href="{% url 'providers_list' %}" class="previous round"><img width="25px" src="{% static 'images/back.png' %}"></a>
                         <header class="panel-title">
                             <div class="text-center">
-                                <strong>Жеткізушілер туралы ақпарат</strong>
+                                <strong style="color: white;">Жеткізушілер туралы ақпарат</strong>
                             </div>
                         </header>
                     </div>
                     <div class="panel-body">
                         <div class="text-center" id="author">
-                            <img width="220px" src="">
+                            <img width="220px" src="{{ provider.img.url }}">
                             <h3>{{provider.name}}</h3>
                             <small class="label label-warning">Жеткізуші</small>
                             <h3></h3>
@@ -100,14 +100,14 @@ background: #f1ede4!important;
                                 <!-- Добавьте этот код после отображения основной информации о поставщике -->
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h3>Қоймаға қабылданған товарлардың тізімі</h3>
+                                        <h3>Қоймаға қабылданған тауарлардың тізімі</h3>
                                         <table class="table">
                                             <thead>
                                                 <tr>
                                                     <th>Қоймаған келген күні</th>
                                                     <th>Келісімшарт номері</th>
                                                     <th>Жеткізуші</th>
-                                                    <th>Товар</th>
+                                                    <th>Тауар</th>
                                                     <th>Дана</th>
                                                     <th>1 дана үшін бағасы</th>
                                                 </tr>
@@ -127,7 +127,6 @@ background: #f1ede4!important;
                                         </table>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

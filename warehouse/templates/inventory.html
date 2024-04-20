@@ -6,6 +6,13 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <style>
     body {
         color: #5b7e78;
@@ -284,22 +291,21 @@
 			$("#selectAll").prop("checked", false);
 		}
 	});
-});
+	// Установка текущей даты в поле "Конечная дата"
+	document.getElementById('end_date').valueAsDate = new Date();
+	});
 </script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <body>
     <div class="container">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
 						<a href="{% url 'index' %}" class="previous round"><img width="25px" src="{% static 'images/back.png' %}"></a>
+					</div>
+					<div class="col-sm-4">
+						<h4 style="font-weight: bold; text-align: center;">Есептен шығару беті</h4>
 					</div>
                 </div>
             </div>
@@ -308,22 +314,27 @@
 					<!-- Фильтр по дате -->
 					<div class="filter-form">
 						<form method="GET" action="{% url 'inventory' %}" style="margin-bottom: 20px; text-align: center;">
-							<div style="display: inline-block;">
+							<!-- <div style="display: inline-block;">
 								<h5 style="margin-bottom: 5px; display: inline-block;">Күн бойыншы фильтр: </h5>
 								<input type="date" name="date" style="padding: 5px; display: inline-block; border: 1px solid #ccc; transition: border-color 0.3s;">
-							</div>
+							</div> -->
+							<div style="display: inline-block;">
+								<h5 style="margin-bottom: 5px; display: inline-block;">Күн бойыншы фильтр: </h5>
+								<input type="date" name="start_date" value="2010-01-01" style="padding: 5px; display: inline-block; border: 1px solid #ccc; transition: border-color 0.3s;">
+								<input type="date" name="end_date" id="end_date" style="padding: 5px; display: inline-block; border: 1px solid #ccc; transition: border-color 0.3s;">
+							</div>						
 							<button type="submit" style="padding: 5px 10px; background-color: #5b7e78; color: white; border: none; cursor: pointer;">Қабылдау</button>
 						</form>
 					</div>
 				</div>
 				<div class="col-md-6 text-right">
-					<button type="button" class="btn btn-primary" id="downloadButton"  style="background-color: #5b7e78;">Есептен шығарылған товарларды жүктеп алу</button>
+					<button type="button" class="btn btn-primary" id="downloadButton"  style="background-color: #5b7e78;">Есептен шығарылған тауарларды жүктеп алу</button>
 					<script>
 						document.getElementById("downloadButton").addEventListener("click", function() {
 							window.location.href = "{% url 'download_inventory_report' %}";
 						});
 					</script>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inventoryModal" style="background-color: #5b7e78;">Товарды есептен шығару</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inventoryModal" style="background-color: #5b7e78;">Тауарды есептен шығару</button>
 				</div>
 			</div>
 			<div class="row">
@@ -333,7 +344,7 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="inventoryModalLabel">Товарды есептен шығару</h5>
+									<h5 class="modal-title" id="inventoryModalLabel">Тауарды есептен шығару</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -358,7 +369,7 @@
 				<thead>
 					<tr>
 						<th style="min-width: 30px;">ID</th>
-						<th style="min-width: 150px;">Товар</th>
+						<th style="min-width: 150px;">Тауар</th>
 						<th style="min-width: 110px;">Дана</th>
 						<th style="min-width: 600px;">Себебі</th>
 						<th style="min-width: 50px;">Күні</th>

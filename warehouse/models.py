@@ -1,5 +1,5 @@
-from django.db import models
-from django.contrib.auth.models import User
+from django.db import models # type: ignore
+from django.contrib.auth.models import User # type: ignore
 
 
 class Secretary(models.Model):
@@ -31,14 +31,17 @@ class Manager(models.Model):
         verbose_name = 'Manager'
 
 class Recipient(models.Model):
+    img = models.ImageField(upload_to='images/', default='static/images/profile.png')
+    country = models.CharField('Страна', max_length=50, default='Қазақстан')
     city = models.CharField('Город', max_length=50)
     address = models.CharField('Адрес точки', max_length=150)
     manager = models.ForeignKey(Manager, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.city + ', ' + self.address 
+        return self.country + ', ' + self.city + ', ' + self.address 
 
 class Provider(models.Model):
+    img = models.ImageField(upload_to='images/', default='static/images/profile.png')
     name = models.CharField('Название', max_length=150)
     address = models.CharField('Адрес поставщика', max_length=150)
     manager = models.ForeignKey(Manager, on_delete=models.CASCADE)
@@ -50,7 +53,11 @@ class Group(models.Model):
     name = models.CharField('Название группы', max_length=100)
     info = models.CharField('Информация', max_length=250)
 
+    def __str__(self):
+        return self.name
+
 class Product(models.Model):
+    img = models.ImageField(upload_to='images/', default='static/images/profile.png')
     name = models.CharField('Название', max_length=150)
     size = models.CharField('Размер', max_length=10)
     color = models.CharField('Цвет', max_length=50, default='')

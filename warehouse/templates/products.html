@@ -2,7 +2,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/students.css' %}" type="text/css">
 
-{% block title  %} Товарлар {% endblock title %}
+{% block title  %} Тауарлар {% endblock title %}
 
 {% block content %}
 
@@ -64,10 +64,10 @@
 		vertical-align: middle;
     }
 	table.table tr th:first-child {
-		width: 60px;
+		width: auto;
 	}
 	table.table tr th:last-child {
-		width: 400px;
+		width: auto;
 	}
     table.table-striped tbody tr:nth-of-type(odd) {
     	background-color: #fcfcfc;
@@ -267,13 +267,11 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-6">
-<!--						<h2>Manage <b>Employees</b></h2>-->
+                    <div class="col-sm-4">
 						<a href="{% url 'index' %}" class="previous round"><img width="25px" src="{% static 'images/back.png' %}"></a>
 					</div>
-					<div class="col-sm-6">
-<!--{#						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Добавить студент</span></a>#}-->
-<!--{#						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Удалить</span></a>#}-->
+					<div class="col-sm-4">
+						<h4 style="font-weight: bold; text-align: center;">Тауарлар беті</h4>
 					</div>
                 </div>
             </div>
@@ -282,7 +280,7 @@
 					<div class="filter-form">
 						<form method="GET" action="{% url 'products_list' %}" style="margin-bottom: 20px; text-align: center;">
 							<div style="display: inline-block;">
-								<h5 style="margin-bottom: 5px; display: inline-block;">Товарды іздеу: </h5>
+								<h5 style="margin-bottom: 5px; display: inline-block;">Тауарды іздеу: </h5>
 								<input type="text" name="name" style="padding: 5px; display: inline-block; border: 1px solid #ccc; transition: border-color 0.3s;">
 							</div>
 							<button type="submit" style="padding: 5px 10px; background-color: #5b7e78; color: white; border: none; cursor: pointer;">Іздеу</button>
@@ -290,7 +288,7 @@
 					</div>
 				</div>
 				<div class="col-md-6 text-right">
-					<button type="button" class="btn btn-primary" id="downloadButton"  style="background-color: #5b7e78;">Барлық товарлар туралы ақпаратты жүктеу</button>
+					<button type="button" class="btn btn-primary" id="downloadButton"  style="background-color: #5b7e78;">Барлық тауарлар туралы ақпаратты жүктеу</button>
 					<script>
 						document.getElementById("downloadButton").addEventListener("click", function() {
 							window.location.href = "{% url 'download_material_report' %}";
@@ -310,7 +308,7 @@
                         <th style="min-width: 180px;">Өндіруші</th>
                         <th style="min-width: 180px;">Жасалған ел</th>
 						<th style="min-width: 110px;">Топ</th>
-						<th style="min-width: 110px;">Штук</th>
+						<th style="min-width: 110px;">Дана</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -322,7 +320,7 @@
 							<td>{{product.color}}</td>
                             <td>{{product.manufacturer}}</td>
                             <td>{{product.country_from}}</td>
-                            <td>{{product.group_id_id}}</td>
+                            <td>{{product.group_id}}</td>
 							<td>{{product.quantity}}</td>
                             <td>
 								<a href="{% url 'product_page' id=product.id %}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>

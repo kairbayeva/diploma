@@ -1,4 +1,4 @@
-from django.conf import settings
+from django.conf import settings # type: ignore
 from django.conf.urls.static import static
 from django.urls import path
 from warehouse import views
@@ -23,4 +23,4 @@ urlpatterns = [
     path('download_shipment_report/', views.download_shipment_report, name='download_shipment_report'),
     path('download_inventory_report/', views.download_inventory_report, name='download_inventory_report'),
     path('download_material_report/', views.download_material_report, name='download_material_report'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

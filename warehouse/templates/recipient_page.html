@@ -64,13 +64,13 @@ background: #f1ede4!important;
                         <a href="{% url 'recipient_list' %}" class="previous round"><img width="25px" src="{% static 'images/back.png' %}"></a>
                         <header class="panel-title">
                             <div class="text-center">
-                                <strong>Алушылар туралы ақпарат</strong>
+                                <strong style="color: white;">Алушылар туралы ақпарат</strong>
                             </div>
                         </header>
                     </div>
                     <div class="panel-body">
                         <div class="text-center" id="author">
-                            <img width="220px" src="">
+                            <img width="220px" src="{{ recipient.img.url }}">
                             <h3>{{recipient.manager}}</h3>
                             <small class="label label-warning">Алушы менеджер</small>
                             <h3></h3>
@@ -91,6 +91,7 @@ background: #f1ede4!important;
                                 <br><br>
                                 <table class="table table-th-block">
                                     <tbody>
+                                    <tr><td class="active">Ел:</td><td>{{recipient.country}}</td></tr>
                                     <tr><td class="active">Қала:</td><td>{{recipient.city}}</td></tr>
                                     <tr><td class="active">Мекен-жайы:</td><td>{{recipient.address}}</td></tr>
                                     <tr><td class="active">Менеджер:</td><td>{{recipient.manager}}</td></tr>
@@ -107,7 +108,7 @@ background: #f1ede4!important;
                                                     <th>Қоймадан жөнелтілген күні</th>
                                                     <th>Келісімшарт номері</th>
                                                     <th>Алушы</th>
-                                                    <th>Товар</th>
+                                                    <th>Тауар</th>
                                                     <th>Дана</th>
                                                     <th>1 дана үшін бағасы</th>
                                                 </tr>

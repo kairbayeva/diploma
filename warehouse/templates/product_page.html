@@ -2,7 +2,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/student.css' %}" type="text/css">
 
-{% block title  %} Товар беті - {{product.name}} {% endblock title %}
+{% block title  %} Тауар беті - {{product.name}} {% endblock title %}
 
 {% block content %}
 
@@ -67,16 +67,15 @@ background: #f1ede4;
                         <a href="{% url 'products_list' %}" class="previous round"><img width="25px" src="{% static 'images/back.png' %}"></a>
                         <header class="panel-title">
                             <div class="text-center" style="color: #fcfbf9;">
-                                <strong>Товар туралы ақпарат</strong>
+                                <strong style="color: white;">Тауар туралы ақпарат</strong>
                             </div>
                         </header>
                     </div>
                     <div class="panel-body">
                         <div class="text-center" id="author">
-<!--                            <img width="220px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">-->
-                            <img width="220px" src="">
+                            <img width="220px" src="{{ product.img.url }}">
                             <h3>{{product.name}}</h3>
-                            <small class="label label-warning">Товар</small>
+                            <small class="label label-warning">Тауар</small>
                             <h3></h3>
                             <p class="sosmed-author">
                             <div class="btn-group">
@@ -98,16 +97,71 @@ background: #f1ede4;
                                 <table class="table table-th-block">
                                     <tbody>
                                     <tr><td class="active">Размер:</td><td>{{product.size}}</td></tr>
-                                    <!-- <tr><td class="active">ЖСН:</td><td>{{student.iin}}</td></tr>
-                                    <tr><td class="active">Жеке куәлік/паспорт № :</td><td>{{student.id_card}}</td></tr>
-                                    <tr><td class="active">Білім беру бағдарламасы / Мамандығы:</td><td>{{student.speciality}}</td></tr>
-                                    <tr><td class="active">GPA:</td><td>{{student.gpa}}</td></tr>
-                                    <tr><td class="active">Дипломдық жобаның тақырыбы:</td><td>{{student.diploma_title}}</td></tr>
-                                    <tr><td class="active">Ғылыми жетекші:</td><td>{{student.advisor}} <br> {{student.advisor_scientific_degree}}</td></tr>
-                                     -->
+                                    <tr><td class="active">Түсі:</td><td>{{product.color}}</td></tr>
+                                    <tr><td class="active">Тобы:</td><td>{{product.group_id}}</td></tr>
+                                    <tr><td class="active">Өндіруші:</td><td>{{product.manufacturer}}</td></tr>
+                                    <tr><td class="active">Шығарған ел:</td><td>{{product.country_from}}</td></tr>
+                                    <tr><td class="active">Қоймадағы саны:</td><td>{{product.quantity}}</td></tr>
                                     </tbody>
                                 </table>
                                 <br><br>
+
+                                <!-- Отправка -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Қоймадан жіберілді</h3>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Қоймадан жөнелтілген күні</th>
+                                                    <th>Келісімшарт нөмері</th>
+                                                    <th>Алушы</th>
+                                                    <th>Дана</th>
+                                                    <th>1 дана үшін бағасы</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for expenditure in expenditures %}
+                                                <tr>
+                                                    <td>{{ expenditure.exp_id.date|date:"d.m.Y" }}</td>
+                                                    <td>{{ expenditure.exp_id.contract_number }}</td>
+                                                    <td>{{ expenditure.exp_id.rec_id }}</td>
+                                                    <td>{{ expenditure.quantity }}</td>
+                                                    <td>{{ expenditure.price }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- Поставка -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Қоймаға қабылданды</h3>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Қоймаған келген күні</th>
+                                                    <th>Келісімшарт номері</th>
+                                                    <th>Жеткізуші</th>
+                                                    <th>Дана</th>
+                                                    <th>1 дана үшін бағасы</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for coming in coming %}
+                                                <tr>
+                                                    <td>{{ coming.com_id.date|date:"d.m.Y" }}</td>
+                                                    <td>{{ coming.com_id.contract_number }}</td>
+                                                    <td>{{ coming.com_id.prov_id.name }}</td>
+                                                    <td>{{ coming.quantity }}</td>
+                                                    <td>{{ coming.price }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

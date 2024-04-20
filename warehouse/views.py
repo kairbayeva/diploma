@@ -1,21 +1,21 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render # type: ignore
+from django.contrib.auth import authenticate, login, logout # type: ignore
 import logging
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404 # type: ignore
 from pyexpat.errors import messages
 from .models import *
-from docxtpl import DocxTemplate
-from django.contrib import auth
+from docxtpl import DocxTemplate # type: ignore
+from django.contrib import auth # type: ignore
 import io
 import datetime
 import locale
 from datetime import date
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required, user_passes_test # type: ignore
+from django.http import HttpResponse # type: ignore
 from .forms import *
-from django.contrib import messages
+from django.contrib import messages # type: ignore
 import datetime
-from django.db.models import Sum
+from django.db.models import Sum # type: ignore
 
 
 def login_page(request):
@@ -103,10 +103,15 @@ def products(request):
 
 def product_page(request, id):
     product = get_object_or_404(Product, id=id)
+    expenditures = Expenditure_add.objects.filter(product_id=id).order_by('-exp_id__date')  # Получить все записи о списаниях
+    coming = Coming_add.objects.filter(product_id=id).order_by('-com_id__date')
 
     context = {
         'username': auth.get_user(request).username,
         'product': product,
+        'expenditures': expenditures,
+        'coming': coming,
+
         # 'defense_form': defense_form
     }
 
@@ -181,15 +186,26 @@ def inventory(request):
     else:
         form = InventoryForm()
 
-    date_query = request.GET.get('date')  # Получение значения фильтрации по дате
+    # date_query = request.GET.get('date')  # Получение значения фильтрации по дате
 
-    if date_query:
-        try:
-            date_query = datetime.datetime.strptime(date_query, '%Y-%m-%d').date()
-        except ValueError:
-            date_query = None
+    # if date_query:
+    #     try:
+    #         date_query = datetime.datetime.strptime(date_query, '%Y-%m-%d').date()
+    #     except ValueError:
+    #         date_query = None
+    # Получение значений дат "от" и "до" из запроса
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
 
-    offs_list = Offs.objects.filter(created_at=date_query).order_by('-created_at') if date_query else Offs.objects.all().order_by('-created_at')
+    # Преобразование строковых значений дат в объекты datetime.date
+    start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d').date() if start_date else None
+    end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d').date() if end_date else None
+
+    # Фильтрация списка объектов Offs по датам
+    offs_list = Offs.objects.filter(created_at__range=[start_date, end_date]).order_by('-created_at') if start_date and end_date else Offs.objects.all().order_by('-created_at')
+
+
+    # offs_list = Offs.objects.filter(created_at=date_query).order_by('-created_at') if date_query else Offs.objects.all().order_by('-created_at')
     global inventory_ids
     inventory_ids = [i.id for i in offs_list]
 
@@ -198,7 +214,9 @@ def inventory(request):
         'form': form,
         'products': products,
         'offs_list': offs_list,
-        'date_query': date_query,
+        # 'date_query': date_query,
+        'start_date': start_date,
+        'end_date': end_date,
         'error_message': ''
     }
 

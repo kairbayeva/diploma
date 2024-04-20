@@ -2,7 +2,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/student.css' %}" type="text/css">
 
-{% block title  %} Товар беті - {{product.name}} {% endblock title %}
+{% block title  %} Тауар беті - {{product.name}} {% endblock title %}
 
 {% block content %}
 
@@ -14,48 +14,48 @@
 <br><br><br><br><br>
 
 <style>
-body{
-background: #f1ede4;
-}
+    body{
+    background: #f1ede4;
+    }
 
-#main {
- background-color: #f1ede4;
- padding: 20px;
- -webkit-border-radius: 4px;
- -moz-border-radius: 4px;
- -ms-border-radius: 4px;
- -o-border-radius: 4px;
- border-radius: 4px;
-}
-#real-estates-detail #author img {
- -webkit-border-radius: 100%;
- -moz-border-radius: 100%;
- -ms-border-radius: 100%;
- -o-border-radius: 100%;
- border-radius: 100%;
- border: 5px solid #ecf0f1;
- margin-bottom: 10px;
-}
-#real-estates-detail .sosmed-author i.fa {
- width: 30px;
- height: 30px;
- border: 2px solid #bdc3c7;
- color: #bdc3c7;
- padding-top: 6px;
- margin-top: 10px;
-}
-.panel-default .panel-heading {
-    background-color: #fcfbf9;
-}
-#real-estates-detail .slides li img {
- height: 450px;
-}
-.label-warning {
-    background-color: #5b7e78;
-}
-.panel {
-    margin-bottom: 0px;
-}
+    #main {
+    background-color: #f1ede4;
+    padding: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    }
+    #real-estates-detail #author img {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    border-radius: 100%;
+    border: 5px solid #ecf0f1;
+    margin-bottom: 10px;
+    }
+    #real-estates-detail .sosmed-author i.fa {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #bdc3c7;
+    color: #bdc3c7;
+    padding-top: 6px;
+    margin-top: 10px;
+    }
+    .panel-default .panel-heading {
+        background-color: #fcfbf9;
+    }
+    #real-estates-detail .slides li img {
+    height: 450px;
+    }
+    .label-warning {
+        background-color: #5b7e78;
+    }
+    .panel {
+        margin-bottom: 0px;
+    }
 </style>
 
 <div class="container">
@@ -67,21 +67,16 @@ background: #f1ede4;
                         <a href="{% url 'manager_main' %}" class="previous round"><img width="25px" src="{% static 'images/back.png' %}"></a>
                         <header class="panel-title">
                             <div class="text-center">
-                                <strong>Товар туралы ақпарат</strong>
+                                <strong style="color: white;">Тауар туралы ақпарат</strong>
                             </div>
                         </header>
                     </div>
                     <div class="panel-body">
                         <div class="text-center" id="author">
-<!--                            <img width="220px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">-->
-                            <img width="220px" src="">
+                            <img width="220px" src="{{ product.img.url }}">
                             <h3>{{product.name}}</h3>
-                            <small class="label label-warning">Товар</small>
+                            <small class="label label-warning">Тауар</small>
                             <h3></h3>
-                            <p class="sosmed-author">
-                            <div class="btn-group">
-<!--                                <a href=""><button type="button" class="btn btn-sm btn-outline-secondary">Edit profile</button></a>-->
-                            </div>
                             </p>
                         </div>
                     </div>
@@ -98,13 +93,11 @@ background: #f1ede4;
                                 <table class="table table-th-block">
                                     <tbody>
                                     <tr><td class="active">Размер:</td><td>{{product.size}}</td></tr>
-                                    <!-- <tr><td class="active">ЖСН:</td><td>{{student.iin}}</td></tr>
-                                    <tr><td class="active">Жеке куәлік/паспорт № :</td><td>{{student.id_card}}</td></tr>
-                                    <tr><td class="active">Білім беру бағдарламасы / Мамандығы:</td><td>{{student.speciality}}</td></tr>
-                                    <tr><td class="active">GPA:</td><td>{{student.gpa}}</td></tr>
-                                    <tr><td class="active">Дипломдық жобаның тақырыбы:</td><td>{{student.diploma_title}}</td></tr>
-                                    <tr><td class="active">Ғылыми жетекші:</td><td>{{student.advisor}} <br> {{student.advisor_scientific_degree}}</td></tr>
-                                     -->
+                                    <tr><td class="active">Түсі:</td><td>{{product.color}}</td></tr>
+                                    <tr><td class="active">Тобы:</td><td>{{product.group_id}}</td></tr>
+                                    <tr><td class="active">Өндіруші:</td><td>{{product.manufacturer}}</td></tr>
+                                    <tr><td class="active">Шығарған ел:</td><td>{{product.country_from}}</td></tr>
+                                    <tr><td class="active">Қоймадағы саны:</td><td>{{product.quantity}}</td></tr>
                                     </tbody>
                                 </table>
                                 <br><br>

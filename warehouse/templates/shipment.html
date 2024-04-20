@@ -356,9 +356,12 @@
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <a href="{% url 'index' %}" class="previous round"><img width="25px" src="{% static 'images/back.png' %}"></a>
                         </div>
+						<div class="col-sm-4">
+							<h4 style="font-weight: bold; text-align: center;">Қоймадан жөнелту беті</h4>
+						</div>
                     </div>
                 </div>
                 <form method="post" action="{% url 'shipment' %}" class="custom-form">
@@ -381,14 +384,14 @@
         <div class="table-wrapper">
             <div class="row">
                 <div class="col-md-12">
-                    <h3>Қоймадан жөнелтілген товарлардың тізімі</h3>
+                    <h3>Қоймадан жөнелтілген тауарлардың тізімі</h3>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>Қоймадан жөнелтілген күні</th>
                                 <th>Келісімшарт номері</th>
                                 <th>Алушы</th>
-                                <th>Товар</th>
+                                <th>Тауар</th>
                                 <th>Дана</th>
                                 <th>1 дана үшін бағасы</th>
                             </tr>

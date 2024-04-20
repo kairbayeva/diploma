@@ -264,8 +264,11 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
 						<a href="{% url 'index' %}" class="previous round"><img width="25px" src="{% static 'images/back.png' %}"></a>
+					</div>
+					<div class="col-sm-4">
+						<h4 style="font-weight: bold; text-align: center;">Алушылар беті</h4>
 					</div>
                 </div>
             </div>
@@ -276,6 +279,7 @@
 
 						</th>
                         <th>ID</th>
+						<th>Ел</th>
                         <th>Қала</th>
                         <th>Мекен-жай</th>
             			<th>Менеджер</th>
@@ -288,9 +292,10 @@
                             <td>
                             </td>
 							<td>{{recipient.id}}</td>
+							<td>{{recipient.country}}</td>
 							<td>{{recipient.city}}</td>
                             <td>{{recipient.address}}</td>
-                            <td>{{recipient.manager_id}}</td>
+                            <td>{{recipient.manager}}</td>
                             <td>
 								<a href="{% url 'recipient_page' id=recipient.id %}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
                             </td>
